@@ -1,11 +1,5 @@
 #!/bin/bash
-
-APP_NAME="Battery alert"
-MIN_STATUS=15
-MAX_STATUS=100
-INTERVAL=60 # In seconds
-NEXT_ALERT_TIME=0
-NOTIFICATION_DELAY_TIME=300
+source config.cfg
 
 function seconds_since_epoch {
   echo $(date +%s)

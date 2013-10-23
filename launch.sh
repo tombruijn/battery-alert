@@ -1,10 +1,10 @@
 #!/bin/bash
+source config.cfg
 
 action=$1
-log=./bat.log
 
 function log {
-  echo "$1" >> "$log"
+  echo "$1" >> "$LOG_FILE"
 }
 
 function pid {
@@ -16,18 +16,18 @@ function isRunning {
 }
 
 function stopApp {
-  log "Stopping \"Battery alert\""
+  log "Stopping \"$APP_NAME\""
   if isRunning; then
     kill -9 `cat ./pid`
   else
-    log "Battery alert not running"
+    log "$APP_NAME not running"
   fi
 }
 
 function startApp {
   log "---"
-  log "Starting \"Battery alert\""
-  sh ./main.sh > $log 2>&1 & echo $! > ./pid &
+  log "Starting \"$APP_NAME\""
+  sh ./main.sh > $LOG_FILE 2>&1 & echo $! > ./pid &
 }
 
 case "$action" in
@@ -44,9 +44,9 @@ case "$action" in
     ;;
   "status")
     if isRunning; then
-      echo "Battery alert: Running!"
+      echo "$APP_NAME: Running!"
     else
-      echo "Battery alert: Not running"
+      echo "$APP_NAME: Not running"
     fi
     ;;
 esac
