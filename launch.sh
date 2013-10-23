@@ -4,7 +4,7 @@ action=$1
 log=./bat.log
 
 function log {
-  echo "$1" > $log
+  echo "$1" >> "$log"
 }
 
 function pid {
