@@ -1,7 +1,7 @@
 #!/bin/bash
 
 APP_NAME="Battery alert"
-MIN_STATUS=10
+MIN_STATUS=15
 MAX_STATUS=100
 INTERVAL=60 # In seconds
 
