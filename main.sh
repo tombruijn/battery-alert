@@ -4,9 +4,22 @@ APP_NAME="Battery alert"
 MIN_STATUS=15
 MAX_STATUS=100
 INTERVAL=60 # In seconds
+NEXT_ALERT_TIME=0
+NOTIFICATION_DELAY_TIME=300
+
+function seconds_since_epoch {
+  echo $(date +%s)
+}
 
 function notify {
-  growlnotify -n "$APP_NAME" -s -m "$1" $APP_NAME
+  if [ "$NEXT_ALERT_TIME" -le "$(seconds_since_epoch)" ]; then
+    now=$(seconds_since_epoch)
+    NEXT_ALERT_TIME=$(($now + $NOTIFICATION_DELAY_TIME))
+    growlnotify -n "$APP_NAME" -s -m "$1" $APP_NAME
+    echo "Notify: $1"
+  else
+    echo "Notify (not sent): $1"
+  fi
 }
 
 while [ true ]
