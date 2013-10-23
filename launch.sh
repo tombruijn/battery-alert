@@ -16,8 +16,11 @@ function isRunning {
 }
 
 function stopApp {
+  log "Stopping \"Battery alert\""
   if isRunning; then
     kill -9 `cat ./pid`
+  else
+    log "Battery alert not running"
   fi
 }
 
@@ -27,21 +30,24 @@ function startApp {
   sh ./main.sh > $log 2>&1 & echo $! > ./pid &
 }
 
-if [ "$action" = "start" ]; then
-  if isRunning; then
+case "$action" in
+  "start")
+    if isRunning; then
+      stopApp
+      startApp
+    else
+      startApp
+    fi
+    ;;
+  "stop")
     stopApp
-    startApp
-  else
-    startApp
-  fi
-elif [ "$action" = "stop" ]; then
-  log "Stopping \"Battery alert\""
-  stopApp
-elif [ "$action" = "status" ]; then
-  if isRunning; then
-    echo "Battery alert: Running!"
-  else
-    echo "Battery alert: Not running"
-  fi
-fi
+    ;;
+  "status")
+    if isRunning; then
+      echo "Battery alert: Running!"
+    else
+      echo "Battery alert: Not running"
+    fi
+    ;;
+esac
 
