@@ -27,7 +27,7 @@ function stopApp {
 function startApp {
   log "---"
   log "Starting \"$APP_NAME\""
-  sh ./main.sh > $LOG_FILE 2>&1 & echo $! > ./pid &
+  sh ./main.sh >> $LOG_FILE 2>&1 & echo $! > ./pid &
 }
 
 case "$action" in
