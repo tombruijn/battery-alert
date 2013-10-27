@@ -12,15 +12,27 @@ The default minimal percentage is `15` and the default maximum percentage is `10
 - Shell
 - Growl (for notifications)
 
+## Installation
+
+```sh
+git clone git@github.com:tombruijn/battery-alert.git
+cd battery-alert
+chmod +x battery-alert main
+```
+
 ## Usage
 
-`sh launch.sh COMMAND`
+`./battery-alert COMMAND`
 
 ### Available commands:
 
 - `start`
 - `stop`
 - `status`
+
+## Configuration
+
+All options that are configurable are available in the `config.cfg` file.
 
 ## License
 
