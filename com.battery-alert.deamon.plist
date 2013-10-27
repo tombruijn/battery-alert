@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.battery-alert.deamon</string>
+  <key>Program</key>
+  <string>/Users/tom/projects/battery-alert/launch.sh</string>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>StandardOutPath</key>
+  <string>/Users/tom/projects/battery-alert/plistout.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/tom/projects/battery-alert/plisterror.log</string>
+  <key>Debug</key>
+  <true/>
+  <key>ProgramArguments</key>
+  <array>
+    <string>start</string>
+  </array>
+</dict>
+</plist>
