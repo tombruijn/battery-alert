@@ -12,11 +12,15 @@ function seconds_since_epoch {
 function notify {
   if [ "$NEXT_ALERT_TIME" -le "$(seconds_since_epoch)" ]; then
     now=$(seconds_since_epoch)
-    NEXT_ALERT_TIME=$(($now + $NOTIFICATION_DELAY_TIME))
     growlnotify -n "$APP_NAME" -s -m "$1" $APP_NAME
-    echo "Notify: $1"
+    if [ "$?" -eq  "0" ]; then
+      NEXT_ALERT_TIME=$(($now + $NOTIFICATION_DELAY_TIME))
+      log "Notify: $1"
+    else
+      log "Notify failed: $1"
+    fi
   else
-    echo "Notify (not sent): $1"
+    log "Notify (not sent): $1"
   fi
 }
 
