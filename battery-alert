@@ -3,9 +3,10 @@ source config.cfg
 source functions
 
 action=$1
+pidFile=./pid
 
 function pid {
-  cat ./pid
+  cat "$pidFile"
 }
 
 function isRunning {
@@ -24,7 +25,7 @@ function stopApp {
 function startApp {
   log "---"
   log "Starting \"$APP_NAME\"" true
-  sh ./main >> $LOG_FILE 2>&1 & echo $! > ./pid &
+  sh ./main >> $LOG_FILE 2>&1 & echo $! > "$pidFile" &
 }
 
 case "$action" in
