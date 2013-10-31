@@ -50,7 +50,7 @@ Use the following order and format for your schedule file.
 Example:
 
 ```csv
-08:00,10,"We'll you'll never charge me in time for the commute!"
+08:00,10,"Well, you'll never charge me in time for the commute!"
 17:00,40,"Almost time to go home dummy! Charge that battery!"
 ```
 
