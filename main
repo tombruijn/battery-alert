@@ -14,6 +14,20 @@ do
     notify "Maximum battery charge reached"
   fi
 
+  if [ -r $SCHEDULE_FILE ]; then
+    while IFS=, read timeRead percentage message
+    do
+      [ -z $timeRead ] && continue
+      timeNow=$(date +%s)
+      timeExpire=($timeNow + $NOTIFICATION_DELAY_TIME)
+      timeScheduled=$(date -jf "%H:%M" "$timeRead" +%s)
+      # Compare date witin 5 minutes and percentage-wise
+      if [ $BATTERY_STATUS -le $percentage ] && [ $timeScheduled -ge $timeNow ] && [ $timeScheduled -le $timeExpire ]; then
+        notify "$message"
+      fi
+    done < $SCHEDULE_FILE
+  fi
+
   sleep $INTERVAL
 done
 
