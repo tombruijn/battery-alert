@@ -10,6 +10,7 @@ function seconds_since_epoch {
 }
 
 function notify {
+  NEXT_ALERT_TIME=${NEXT_ALERT_TIME:-0}
   if [ "$NEXT_ALERT_TIME" -le "$(seconds_since_epoch)" ]; then
     now=$(seconds_since_epoch)
     growlnotify -n "$APP_NAME" -s -m "$1" $APP_NAME
