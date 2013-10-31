@@ -33,6 +33,26 @@ chmod +x battery-alert main
 ## Configuration
 
 All options that are configurable are available in the `config.cfg` file.
+Such as: minimum and maximum percentage, check up interval, notification rest period and some internally used variables.
+
+### Scheduling
+
+You can a scheduled alerts, something that reminds you to charge your laptop's battery an hour before you have to leave.
+Scheduled alerts are based on time, meaning that they will go off every day at that time.
+
+Use the `schedule.csv` file (name configureable in `config.cfg`) to schedule alerts.
+Use the following order and format for your schedule file.
+
+```csv
+%TIME(%H:%M),%PERCENTAGE(Integer),"$MESSAGE(String)"
+```
+
+Example:
+
+```csv
+08:00,10,"We'll you'll never charge me in time for the commute!"
+17:00,40,"Almost time to go home dummy! Charge that battery!"
+```
 
 ## License
 
