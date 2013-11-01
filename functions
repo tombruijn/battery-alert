@@ -13,7 +13,8 @@ function notify {
   NEXT_ALERT_TIME=${NEXT_ALERT_TIME:-0}
   if [ "$NEXT_ALERT_TIME" -le "$(seconds_since_epoch)" ]; then
     now=$(seconds_since_epoch)
-    growlnotify -n "$APP_NAME" -s -m "$1" $APP_NAME
+    $NOTIFICATION_STICKY && sticky="-s"
+    growlnotify -n "$APP_NAME" $sticky -m "$1" $APP_NAME
     if [ "$?" -eq  "0" ]; then
       NEXT_ALERT_TIME=$(($now + $NOTIFICATION_DELAY_TIME))
       log "Notify: $1"
