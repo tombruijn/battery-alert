@@ -47,5 +47,9 @@ case "$action" in
       echo "$APP_NAME: Not running"
     fi
     ;;
+  *)
+    echo "Usage: $0 {start|stop|status}"
+    exit 1
+    ;;
 esac
 
