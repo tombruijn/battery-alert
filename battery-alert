@@ -6,7 +6,7 @@ action=$1
 pidFile=./pid
 
 function pid {
-  cat "$pidFile"
+  echo $(< $pidFile)
 }
 
 function isRunning {
