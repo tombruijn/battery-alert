@@ -1,23 +1,23 @@
 #!/bin/bash
 
-function log {
+log() {
   echo "[$(date +'%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
   [ $2 ] && echo $1
 }
 
-function seconds_since_epoch {
+seconds_since_epoch() {
   echo $(date +%s)
 }
 
-function is_min_charge {
+is_min_charge() {
   [[ $1 -le $MIN_STATUS ]]
 }
 
-function is_max_charge {
+is_max_charge() {
   [[ $1 -ge $MAX_STATUS ]]
 }
 
-function notify {
+notify() {
   NEXT_ALERT_TIME=${NEXT_ALERT_TIME:-0}
   now=$(seconds_since_epoch)
   if [[ $NEXT_ALERT_TIME -le $now ]]; then
@@ -34,15 +34,15 @@ function notify {
   fi
 }
 
-function battery_percentage {
+battery_percentage() {
   echo `pmset -g ps | sed -n 's/.*[[:blank:]]+*\(.*\)%.*/\1/p'`
 }
 
-function is_charging {
+is_charging() {
   return $([[ -z `pmset -g ps | sed -n -e 's/.*\(discharging\).*/\1/p'` ]])
 }
 
-function charge_state {
+charge_state() {
   if is_charging; then echo charging; else echo discharging; fi
 }
 
