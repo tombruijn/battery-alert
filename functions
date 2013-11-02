@@ -17,12 +17,28 @@ is_max_charge() {
   [[ $1 -ge $MAX_STATUS ]]
 }
 
+notification_icon() {
+  case $(battery_percentage) in
+    [0-9]|[1-3][0-9])
+      icon=empty
+      ;;
+    [4-8][0-9])
+      icon=half
+      ;;
+    *)
+      icon=full
+      ;;
+  esac
+  echo "$icon"
+}
+
 notify() {
   NEXT_ALERT_TIME=${NEXT_ALERT_TIME:-0}
   now=$(seconds_since_epoch)
   if [[ $NEXT_ALERT_TIME -le $now ]]; then
     $NOTIFICATION_STICKY && sticky="-s"
-    growlnotify -n "$APP_NAME" $sticky -m "$1" $APP_NAME
+    icon="--image ./icons/battery-alert-icon-$(notification_icon).png"
+    growlnotify -n "$APP_NAME" $icon $sticky -m "$1" $APP_NAME
     if [[ $? -eq  0 ]]; then
       NEXT_ALERT_TIME=($now + $NOTIFICATION_DELAY_TIME)
       log "Notify: $1"
