@@ -40,7 +40,7 @@ notify() {
     icon="--image ./icons/battery-alert-icon-$(notification_icon).png"
     growlnotify -n "$APP_NAME" $icon $sticky -m "$1" $APP_NAME
     if [[ $? -eq  0 ]]; then
-      NEXT_ALERT_TIME=($now + $NOTIFICATION_DELAY_TIME)
+      NEXT_ALERT_TIME=$(($now + $NOTIFICATION_DELAY_TIME))
       log "Notify: $1"
     else
       log "Notify failed: $1"
