@@ -26,3 +26,15 @@ function notify {
   fi
 }
 
+function batteryPercentage {
+  echo `pmset -g ps | sed -n 's/.*[[:blank:]]+*\(.*\)%.*/\1/p'`
+}
+
+function isBatteryCharging {
+  return $([[ -z `pmset -g ps | sed -n -e 's/.*\(discharging\).*/\1/p'` ]])
+}
+
+function batteryChargeState {
+  if isBatteryCharging; then echo charging; else echo discharging; fi
+}
+
