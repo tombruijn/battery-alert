@@ -9,7 +9,7 @@ The default minimal percentage is `15` and the default maximum percentage is `10
 ## Requirements
 
 - Built for OSX (battery life command)
-- Shell
+- Bash
 - Growl (for notifications)
 
 ## Installation
@@ -57,6 +57,24 @@ Example:
 ```
 
 _Updating the `schedule.csv` file requires a restart of Battery alert._
+
+## Contributing
+
+If you'd like to help out making Battery alert better you, Thanks! Any help is appreciated.
+
+__Bugs, issues and other__  
+Use the [GitHub issue tracker](https://github.com/tombruijn/battery-alert/issues) for this project.
+Please add as much information about your issue or the bug you've encountered so it can be quickly reproduced and hopefully resolved.
+
+__Features__  
+If you wish to add new features to Battery alert do so by forking the project and submitting a pull request on the project's
+[GitHub page](https://github.com/tombruijn/battery-alert).
+
+## To-do list
+
+- Linux support
+- Auto start battery alert
+- Native OSX notification support
 
 ## License
 
