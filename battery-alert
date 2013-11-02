@@ -14,7 +14,7 @@ function isRunning {
 }
 
 function stopApp {
-  log "Stopping \"$APP_NAME\"" true
+  log "Stopping $APP_NAME" true
   if isRunning; then
     kill -9 "$(pid)"
   else
@@ -24,7 +24,7 @@ function stopApp {
 
 function startApp {
   log "---"
-  log "Starting \"$APP_NAME\"" true
+  log "Starting $APP_NAME" true
   sh ./main >> $LOG_FILE 2>&1 & echo $! > "$pidFile" &
 }
 
