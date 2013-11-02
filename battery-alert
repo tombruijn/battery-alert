@@ -28,8 +28,8 @@ function startApp {
   sh ./main >> $LOG_FILE 2>&1 & echo $! > "$pidFile" &
 }
 
-case "$action" in
-  "start")
+case $action in
+  start)
     if isRunning; then
       stopApp
       startApp
@@ -37,10 +37,10 @@ case "$action" in
       startApp
     fi
     ;;
-  "stop")
+  stop)
     stopApp
     ;;
-  "status")
+  status)
     if isRunning; then
       echo "$APP_NAME: Running!"
     else
