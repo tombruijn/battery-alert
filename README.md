@@ -1,10 +1,23 @@
 # Battery alert
 
-Small tool that keeps an eye on your laptop's battery and gives you a warning when it is full or almost empty. This tool's warnings are meant to tell the user when to disconnect and reconnect to power in order to make the best of the battery life.
+Small tool that keeps an eye on your laptop's battery and gives you a warning when it is full or almost empty.
+This tool's warnings are meant to tell the user when to disconnect and reconnect to power in order to make the best* of the battery life. (\*read the disclaimer)
 
 The tool will run in the background after starting it (auto start is not available yet) and check the battery life every minute.
 
-The default minimal percentage is `15` and the default maximum percentage is `100`.
+The default minimal percentage is `25` and the default maximum percentage is `100`.
+
+## Disclaimer
+
+I'm not saying discharging your laptop's battery every time it's at the maximum (configured) percentage
+and charging it again at the minimum (configured) percentage is the best method to preserve battery life.
+It's __an__ approach for laptops that are plugged in all the time to take every so often.
+
+As said by [Apple](http://www.apple.com/batteries/notebooks.html): _For proper maintenance of a lithium-based battery, it’s important to keep the electrons in it moving occasionally. Apple does not recommend leaving your portable plugged in all the time. An ideal use would be a commuter who uses her notebook on the train, then plugs it in at the office to charge. This keeps the battery juices flowing. If on the other hand, you use a desktop computer at work, and save a notebook for infrequent travel, Apple recommends charging and discharging its battery at least once per month._
+
+_Personally_, I wrote this tool mainly to get a better hang of bash scripting.
+In the real world I'll probably use Battery alert in the weekends, to simulate my commute during the week.
+On week days I'll silence Battery alert during work hours most of the time.
 
 ## Preview
 
