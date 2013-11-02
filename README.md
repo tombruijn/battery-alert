@@ -6,6 +6,14 @@ The tool will run in the background after starting it (auto start is not availab
 
 The default minimal percentage is `15` and the default maximum percentage is `100`.
 
+## Preview
+
+Preview of notifications (using Growl's _Smoke_ theme).
+
+![Battery alert, battery almost empty](https://raw.github.com/tombruijn/battery-alert/master/doc/preview-empty.png)
+![Battery alert, battery (almost) full](https://raw.github.com/tombruijn/battery-alert/master/doc/preview-full.png)
+![Battery alert, scheduled alert](https://raw.github.com/tombruijn/battery-alert/master/doc/preview-scheduled.png)
+
 ## Requirements
 
 - Built for OSX (battery life command)
