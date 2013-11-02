@@ -9,14 +9,22 @@ function seconds_since_epoch {
   echo $(date +%s)
 }
 
+function is_min_charge {
+  [[ $1 -le $MIN_STATUS ]]
+}
+
+function is_max_charge {
+  [[ $1 -ge $MAX_STATUS ]]
+}
+
 function notify {
   NEXT_ALERT_TIME=${NEXT_ALERT_TIME:-0}
-  if [ "$NEXT_ALERT_TIME" -le "$(seconds_since_epoch)" ]; then
-    now=$(seconds_since_epoch)
+  now=$(seconds_since_epoch)
+  if [[ $NEXT_ALERT_TIME -le $now ]]; then
     $NOTIFICATION_STICKY && sticky="-s"
     growlnotify -n "$APP_NAME" $sticky -m "$1" $APP_NAME
-    if [ "$?" -eq  "0" ]; then
-      NEXT_ALERT_TIME=$(($now + $NOTIFICATION_DELAY_TIME))
+    if [[ $? -eq  0 ]]; then
+      NEXT_ALERT_TIME=($now + $NOTIFICATION_DELAY_TIME)
       log "Notify: $1"
     else
       log "Notify failed: $1"
@@ -26,15 +34,15 @@ function notify {
   fi
 }
 
-function batteryPercentage {
+function battery_percentage {
   echo `pmset -g ps | sed -n 's/.*[[:blank:]]+*\(.*\)%.*/\1/p'`
 }
 
-function isBatteryCharging {
+function is_charging {
   return $([[ -z `pmset -g ps | sed -n -e 's/.*\(discharging\).*/\1/p'` ]])
 }
 
-function batteryChargeState {
-  if isBatteryCharging; then echo charging; else echo discharging; fi
+function charge_state {
+  if is_charging; then echo charging; else echo discharging; fi
 }
 

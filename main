@@ -4,26 +4,24 @@ source functions
 
 while [ true ]
 do
-  # see: http://hints.macworld.com/article.php?story=20100130123935998
-  BATTERY_STATUS=$(batteryPercentage)
-  isCharging=$(isBatteryCharging)
-  log "Current battery charge: $BATTERY_STATUS%, $(batteryChargeState)"
+  BATTERY_STATUS=$(battery_percentage)
+  log "Current battery charge: $BATTERY_STATUS%, $(charge_state)"
 
-  if [ "$BATTERY_STATUS" -le "$MIN_STATUS" ] && [[ ! $isCharging ]]; then
+  if is_min_charge $BATTERY_STATUS && ! is_charging; then
     notify "Minimum battery charge reached"
-  elif [ "$BATTERY_STATUS" -ge "$MAX_STATUS" ] && [[ $isCharging ]]; then
+  elif is_max_charge $BATTERY_STATUS && is_charging; then
     notify "Maximum battery charge reached"
   fi
 
   if [ -r $SCHEDULE_FILE ]; then
-    while IFS=, read timeRead percentage message
+    while IFS=, read time_read percentage message
     do
-      [ -z $timeRead ] && continue
-      timeNow=$(date +%s)
-      timeExpire=($timeNow + $NOTIFICATION_DELAY_TIME)
-      timeScheduled=$(date -jf "%H:%M" "$timeRead" +%s)
+      [ -z $time_read ] && continue
+      time_now=$(date +%s)
+      time_expire=($time_now + $NOTIFICATION_DELAY_TIME)
+      time_scheduled=$(date -jf "%H:%M" "$time_read" +%s)
       # Compare date witin 5 minutes and percentage-wise
-      if [ $BATTERY_STATUS -le $percentage ] && [ $timeScheduled -ge $timeNow ] && [ $timeScheduled -le $timeExpire ]; then
+      if [ $BATTERY_STATUS -le $percentage ] && [ $time_scheduled -ge $time_now ] && [ $time_scheduled -le $time_expire ]; then
         notify "$message"
       fi
     done < $SCHEDULE_FILE
