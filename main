@@ -14,7 +14,7 @@ do
   fi
 
   if [ -r $SCHEDULE_FILE ]; then
-    while IFS=, read time_read percentage message
+    schedule | while IFS=, read time_read percentage message
     do
       [ -z $time_read ] && continue
       time_now=$(date +%s)
@@ -24,7 +24,7 @@ do
       if [ $BATTERY_STATUS -le $percentage ] && [ $time_scheduled -ge $time_now ] && [ $time_scheduled -le $time_expire ]; then
         notify "$message"
       fi
-    done < $SCHEDULE_FILE
+    done
   fi
 
   sleep $INTERVAL

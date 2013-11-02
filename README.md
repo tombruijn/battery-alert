@@ -26,7 +26,7 @@ chmod +x battery-alert main
 
 ### Available commands:
 
-- `start`
+- `start` (also acts as restart)
 - `stop`
 - `status`
 
@@ -35,7 +35,7 @@ chmod +x battery-alert main
 All options that are configurable are available in the `config.cfg` file.
 Such as: minimum and maximum percentage, check up interval, notification rest period and some internally used variables.
 
-Any change to the `config.cfg` file will require a restart of Battery alert.
+_Any change to the `config.cfg` file will require a restart of Battery alert._
 
 ### Scheduling
 
@@ -56,7 +56,7 @@ Example:
 17:00,40,"Almost time to go home dummy! Charge that battery!"
 ```
 
-_Updating the `schedule.csv` file does not require a restart._
+_Updating the `schedule.csv` file requires a restart of Battery alert._
 
 ## License
 

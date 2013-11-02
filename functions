@@ -5,6 +5,11 @@ log() {
   [ $2 ] && echo $1
 }
 
+schedule() {
+  [[ -z $schedule ]] && schedule=$(< $SCHEDULE_FILE)
+  echo "$schedule"
+}
+
 seconds_since_epoch() {
   echo $(date +%s)
 }
