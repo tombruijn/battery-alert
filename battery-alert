@@ -24,7 +24,7 @@ function stopApp {
 
 function startApp {
   log "---"
-  log "Starting $APP_NAME" true
+  log "Starting $APP_NAME $(version)" true
   sh ./main >> $LOG_FILE 2>&1 & echo $! > "$pidFile" &
 }
 
@@ -46,6 +46,9 @@ case $action in
     else
       echo "$APP_NAME: Not running"
     fi
+    ;;
+  version)
+    echo $(version)
     ;;
   *)
     echo "Usage: $0 {start|stop|status}"

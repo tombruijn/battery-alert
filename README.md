@@ -50,6 +50,7 @@ chmod +x battery-alert main
 - `start` (also acts as restart)
 - `stop`
 - `status`
+- `version`
 
 ## Configuration
 
